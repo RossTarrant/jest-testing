@@ -1,7 +1,7 @@
 export function caesarCipher(plaintext, key){
     if(key<0){throw new Error("Keys must be greater than or equal to 0")};
     key = cleanKey(key);
-    const chars = plaintext.split("");
+    const chars = plaintext.toString().split("");
     let toReturn = [];
     for(let char of chars){
         if(!isSymbol(char) && !isInt(char)){
@@ -21,21 +21,28 @@ function cleanKey(key){
 
 function shiftChar(char, key){
     let code = char.charCodeAt();
-    code += key;
-    if(code > 90){
-        code -= 25;
+    if(isUpper(char)){
+        code += key;
+        if(code > 90){
+            code -= 26;
+        }
     }
-    console.log(String.fromCharCode(code))
+    else{
+        code += key;
+        if(code > 122){
+            code -= 26;
+        }  
+    }
     return String.fromCharCode(code);
 }
 
 function isUpper(char){
-    console.log(char)
-    return (char===char.toUppercase());
+    const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    return upper.includes(char) ? true : false;
 }
 
 function isSymbol(char){
-    const punctuation = ["!@£$%^&*()-=_+{}[]:;?/>.<,~`|\""]
+    const punctuation = "!@£$%^&*()-=_+{}[]:;?/>.<,~`|\""
     return punctuation.includes(char);
 }
 

@@ -4,7 +4,7 @@ test('Lowercase plaintext with key of 5', () => {
     expect(caesarCipher("apple", 5)).toBe("fuuqj");
 })
 
-test.only('Uppercase plaintext with key of 5', () => {
+test('Uppercase plaintext with key of 5', () => {
     expect(caesarCipher("APPLE", 5)).toBe("FUUQJ");
 })
 
@@ -17,7 +17,7 @@ test('Mixed letters and numbers with key of 5', () => {
 })
 
 test('Only numbers with key of 5 remain the same', () => {
-    expect(caesarCipher(1234, 5)).toBe(1234);
+    expect(caesarCipher(1234, 5)).toBe("1234");
 })
 
 test('Keys of greater than 26 accepted and wrap around correctly', () => {
